@@ -27,7 +27,7 @@ function init() {
 
   
   const numberOfCircles = Math.floor(windowWidth / 30)
-  // const numberOfCircles = // ! FOR TESTING PURPOSES
+  // const numberOfCircles = 1 // ! FOR TESTING PURPOSES
   const maxRadius = 30
   const minRadius = 3
   const circleSensitivity = 200
