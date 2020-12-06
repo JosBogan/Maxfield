@@ -3,9 +3,14 @@ function init() {
 
   const canvas = document.querySelector('#canvas')
   const aboutMe = document.querySelector('#about_me')
+  const nextButton = document.querySelector('#next_button')
   
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
+
+  // const maxScrollSpeed = 100
+  // let currentScrollSpeed = 1
+  let scrolling = false
   
   canvas.width = windowWidth
   canvas.height = windowHeight
@@ -19,7 +24,6 @@ function init() {
   const minRadius = 3
   const circleSensitivity = 200
   const circleSpeed = 30
-
   const circleStaticSpeed = 4
   
   const circles = []
@@ -170,17 +174,52 @@ function init() {
   }
 
   function mouseScroll(event) {
+    if (scrolling) return
+    // scrolling =  true
+    
+    
+    // let scrollDistance = 0
     if (event.deltaY > 0) {
-      aboutMe.scrollIntoView()
+      nextButton.click()
+
+      // while (scrollDistance < windowHeight) {
+      //   if (currentScrollSpeed < maxScrollSpeed) {
+      //     currentScrollSpeed *= 2
+      //     if (currentScrollSpeed > maxScrollSpeed) {
+      //       currentScrollSpeed = maxScrollSpeed
+      //     }
+      //     console.log(currentScrollSpeed)
+      //   }
+      //   if ((scrollDistance + currentScrollSpeed) > windowHeight) {
+      //     window.scrollTop(windowHeight - scrollDistance)
+      //   }  else {
+      //     console.log('scrollinog')
+      //     window.scrollTop(scrollDistance)
+      //   }
+      //   scrollDistance += currentScrollSpeed
+      // }
+      // scrollDistance = 0
+      // currentScrollSpeed = 1
     } else {
-      console.log('up')
+      console.log('getting here')
+      const nextSectionStore = nextButton.href
+      nextButton.href = '#title_section'
+      nextButton.click()
+      nextButton.href = nextSectionStore
+      console.log(nextSectionStore)
     }
+  }
+
+  function finishedScrolling() {
+    console.log('finished scrolling', scrolling)
+    scrolling = false
   }
   
   
   createCircles(numberOfCircles)
   onTick()
   
+  document.addEventListener('scroll', finishedScrolling)
   document.addEventListener('mousemove', mouseMove)
   document.addEventListener('wheel', mouseScroll)
 }
