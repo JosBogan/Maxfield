@@ -4,22 +4,30 @@ function init() {
   const canvas = document.querySelector('#canvas')
   const aboutMe = document.querySelector('#about_me')
   const nextButton = document.querySelector('#next_button')
-  
+  const burgerMenu = document.querySelector('#burger_menu')
+  const menu_overlay = document.querySelector('#menu_overlay')
+  // const pencil = document.querySelector('#pencil_img')
+
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
   // const maxScrollSpeed = 100
   // let currentScrollSpeed = 1
   let scrolling = false
+
+  let burgerOpen = false
   
   canvas.width = windowWidth
   canvas.height = windowHeight
+
+  // const pencilPosition = [0, 0]
   
   const ctx = canvas.getContext('2d')
   // ctx.translate(0.5, 0.5)
 
   
   const numberOfCircles = Math.floor(windowWidth / 30)
+  // const numberOfCircles = // ! FOR TESTING PURPOSES
   const maxRadius = 30
   const minRadius = 3
   const circleSensitivity = 200
@@ -28,7 +36,7 @@ function init() {
   
   const circles = []
   
-  const colours = ['#C03221', '#F7F7FF', '#F2D0A4', '#545E75', '#3F826D']
+  const colours = ['#C03221', '#88CCF1', '#F2D0A4', '#545E75', '#3F826D']
   
   const client = {
     x: null,
@@ -135,13 +143,17 @@ function init() {
           !(circle.position.x + (unitVector[0] * (magnitude / circleSpeed)) + circle.radius >= windowWidth) &&
           !(circle.position.x + (unitVector[0] * (magnitude / circleSpeed)) - circle.radius <= 0)
         ) {
-          circle.position.x += (unitVector[0] * (magnitude / circleSpeed))
+          const vector = unitVector[0] * (magnitude / circleSpeed)
+          // ISSUE OCURRING BECAUSE THE DISTANCE IS BEING HALVED EACH TIME TO IT NEVER ACTUALLY GETS BEYOND THE DISTANCE
+          circle.position.x += vector
         }
         if (
           !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) + circle.radius >= windowHeight) &&
           !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) - circle.radius <= 0)
         ) {
-          circle.position.y += (unitVector[1] * (magnitude / circleSpeed))
+          const vector = unitVector[1] * (magnitude / circleSpeed)
+          // ISSUE OCURRING BECAUSE THE DISTANCE IS BEING HALVED EACH TIME TO IT NEVER ACTUALLY GETS BEYOND THE DISTANCE
+          circle.position.y += vector
         }
       } else {
         if (
@@ -170,7 +182,11 @@ function init() {
   function mouseMove(event) {
     client.x = event.clientX
     client.y = event.clientY
+  }
 
+  function touchMove(event) {
+    client.x = event.touches[0].clientX
+    client.y = event.touches[0].clientY
   }
 
   function mouseScroll(event) {
@@ -214,12 +230,34 @@ function init() {
     console.log('finished scrolling', scrolling)
     scrolling = false
   }
+
+  function burgerMenuFunction() {
+    const burgerLines = burgerMenu.childNodes
+    switch (burgerOpen) {
+      case true:
+        burgerLines[0].classList.remove('burger_line_top_clicked')
+        burgerLines[1].classList.remove('burger_line_bot_clicked')
+        menu_overlay.classList.remove('menu_overlay_open')
+        burgerOpen = false
+        break
+      case false:
+        burgerLines[0].classList.add('burger_line_top_clicked')
+        burgerLines[1].classList.add('burger_line_bot_clicked')
+        menu_overlay.classList.add('menu_overlay_open')
+        burgerOpen = true
+        break
+    }
+  }
   
   
   createCircles(numberOfCircles)
   onTick()
-  
+
+
+  burgerMenu.addEventListener('click', burgerMenuFunction)
   document.addEventListener('scroll', finishedScrolling)
+  document.addEventListener('touchstart', touchMove)
+  document.addEventListener('touchmove', touchMove)
   document.addEventListener('mousemove', mouseMove)
   document.addEventListener('wheel', mouseScroll)
 }

@@ -4,18 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles.css"/>
+  <script src="https://kit.fontawesome.com/494369d355.js" crossorigin="anonymous"></script>
   <script src="./app.js"></script>
   <title>Document</title>
 </head>
 <body>
+  <div class="menu_overlay" id="menu_overlay">
+    <ul class="menu_list">
+      <li>About me</li>
+      <li>My Writings</li>
+      <li>Contact</li>
+    </ul>
+  </div>
   <main class="main_section">
     <section class="title_section" id="title_section">
+      <div class="title_img_background">
+        <!-- <img class="pencil_img" id="pencil_img" height="300px" src="./assets/color-pencil.svg"/> -->
+      </div>
       <h1 class="name_title">Nat</br>Maxfield</h1>
     </section>
     <section id="about_me" class="about_me"></section>
     <canvas class="canvas" id="canvas" width="" height=""></canvas>
     
   </main>
+  <div class="personal_links">
+    <ul>
+      <li><a href="https://www.linkedin.com/in/nat-maxfield-0a9a90130/" target="blank"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
+  </div>
+  <div class="burger_menu" id="burger_menu"><div class="burger_line burger_line_top"></div><div class="burger_line burger_line_bot"></div></div>
   <a class="arrow_container" id="next_button" href="#about_me">
     <div class="upper_chevron">
     </div>
