@@ -2,7 +2,22 @@
 
 * {
   margin: 0;
+  scroll-behavior: smooth;
   overscroll-behavior-y: none;
+}
+
+button,
+input,
+optgroup,
+select,
+a,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+  background: none;
+  border: none;
 }
 
 .canvas {
@@ -14,17 +29,21 @@
 .main_section {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   background: rgb(26,29,35);
-
   background: linear-gradient(0deg, rgba(26,29,35,1) 0%, rgba(26,29,35,1) 25%, rgba(47,52,64,1) 100%);
-  
-    
   font-family: 'Raleway', sans-serif;
   color: whitesmoke;
-  display: flex;
-  /* font-weight: 100; */
-  justify-content: flex-end;
-  align-items: center;
+}
+
+/* TITLE PAGE */
+
+.title_section {
+  height: 100%;
+ width: 100%;
+ display: flex;
+ justify-content: flex-end;
+ align-items: center;
 }
 
 .name_title {
@@ -33,6 +52,13 @@
   text-align: right;
   font-size: 6em;
   z-index: 1;
+}
+
+/* ABOUT ME  */
+
+.about_me {
+  height: 100%;
+  width: 100%;
 }
 
 

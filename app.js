@@ -2,6 +2,7 @@ function init() {
   console.log('here')
 
   const canvas = document.querySelector('#canvas')
+  const aboutMe = document.querySelector('#about_me')
   
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
@@ -13,7 +14,7 @@ function init() {
   // ctx.translate(0.5, 0.5)
 
   
-  const numberOfCircles = Math.floor(windowWidth / 40)
+  const numberOfCircles = Math.floor(windowWidth / 30)
   const maxRadius = 30
   const minRadius = 3
   const circleSensitivity = 200
@@ -82,6 +83,11 @@ function init() {
     circles.forEach(circle => {
       
       ctx.fillStyle = circle.colour
+      // ctx.shadowColor = 'rgba(0, 0, 0, 0.35)'
+      // ctx.shadowBlur = 5
+      // ctx.shadowOffsetX = 3
+      // ctx.shadowOffsetY = 3
+
       ctx.beginPath()
       ctx.ellipse(circle.position.x, circle.position.y, circle.radius, circle.radius, 0, 0, Math.PI * 2)
       ctx.fill()
@@ -162,12 +168,21 @@ function init() {
     client.y = event.clientY
 
   }
+
+  function mouseScroll(event) {
+    if (event.deltaY > 0) {
+      aboutMe.scrollIntoView()
+    } else {
+      console.log('up')
+    }
+  }
   
   
   createCircles(numberOfCircles)
   onTick()
   
   document.addEventListener('mousemove', mouseMove)
+  document.addEventListener('wheel', mouseScroll)
 }
 
 document.addEventListener('DOMContentLoaded', init)
