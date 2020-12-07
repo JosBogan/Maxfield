@@ -92,6 +92,12 @@ background-repeat: no-repeat; */
   width: 100%;
 }
 
+.inner_container {
+  height: 80%;
+  width: 80%;
+  background: white;
+}
+
 
 /* NEXT PAGE */
 

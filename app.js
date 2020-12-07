@@ -2,6 +2,7 @@ function init() {
   console.log('here')
 
   const canvas = document.querySelector('#canvas')
+  const main_section = document.querySelector('#main_section')
   const aboutMe = document.querySelector('#about_me')
   const nextButton = document.querySelector('#next_button')
   const burgerMenu = document.querySelector('#burger_menu')
@@ -33,6 +34,7 @@ function init() {
   const circleSensitivity = 200
   const circleSpeed = 30
   const circleStaticSpeed = 4
+  let movementTimer
   
   const circles = []
   
@@ -178,10 +180,17 @@ function init() {
     drawCircles()
     window.requestAnimationFrame(onTick)
   }
+
+  function clearMovement() {
+    client.x = null
+    client.y = null
+  }
   
   function mouseMove(event) {
+    clearTimeout(movementTimer)
     client.x = event.clientX
     client.y = event.clientY
+    movementTimer = setTimeout(clearMovement, 1000)
   }
 
   function touchMove(event) {
@@ -190,45 +199,23 @@ function init() {
   }
 
   function mouseScroll(event) {
+    if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
+    if (event.deltaY < 0 && main_section.scrollTop <= 0) return
     if (scrolling) return
-    // scrolling =  true
-    
-    
-    // let scrollDistance = 0
-    if (event.deltaY > 0) {
-      nextButton.click()
+    scrolling = true
 
-      // while (scrollDistance < windowHeight) {
-      //   if (currentScrollSpeed < maxScrollSpeed) {
-      //     currentScrollSpeed *= 2
-      //     if (currentScrollSpeed > maxScrollSpeed) {
-      //       currentScrollSpeed = maxScrollSpeed
-      //     }
-      //     console.log(currentScrollSpeed)
-      //   }
-      //   if ((scrollDistance + currentScrollSpeed) > windowHeight) {
-      //     window.scrollTop(windowHeight - scrollDistance)
-      //   }  else {
-      //     console.log('scrollinog')
-      //     window.scrollTop(scrollDistance)
-      //   }
-      //   scrollDistance += currentScrollSpeed
-      // }
-      // scrollDistance = 0
-      // currentScrollSpeed = 1
+    if (event.deltaY > 0) {
+      main_section.scrollBy(0, windowHeight)
     } else {
-      console.log('getting here')
-      const nextSectionStore = nextButton.href
-      nextButton.href = '#title_section'
-      nextButton.click()
-      nextButton.href = nextSectionStore
-      console.log(nextSectionStore)
+      main_section.scrollBy(0, -windowHeight)
     }
   }
 
   function finishedScrolling() {
-    console.log('finished scrolling', scrolling)
-    scrolling = false
+    // console.log(main_section.scrollTop % windowHeight)
+    if (main_section.scrollTop % windowHeight === 0) {
+      scrolling = false
+    }
   }
 
   function burgerMenuFunction() {
@@ -255,7 +242,7 @@ function init() {
 
 
   burgerMenu.addEventListener('click', burgerMenuFunction)
-  document.addEventListener('scroll', finishedScrolling)
+  main_section.addEventListener('scroll', finishedScrolling)
   document.addEventListener('touchstart', touchMove)
   document.addEventListener('touchmove', touchMove)
   document.addEventListener('mousemove', mouseMove)
