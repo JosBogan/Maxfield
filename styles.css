@@ -87,7 +87,7 @@ background-repeat: no-repeat; */
 
 /* ABOUT ME  */
 
-.about_me {
+.outer__content_container {
   height: 100%;
   width: 100%;
 }
@@ -96,6 +96,7 @@ background-repeat: no-repeat; */
   height: 80%;
   width: 80%;
   background: white;
+  color: black;
 }
 
 

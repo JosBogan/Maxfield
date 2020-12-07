@@ -35,6 +35,10 @@ function init() {
   const circleSpeed = 30
   const circleStaticSpeed = 4
   let movementTimer
+
+  let scrollTimer
+
+  let scrollDirection
   
   const circles = []
   
@@ -198,21 +202,25 @@ function init() {
     client.y = event.touches[0].clientY
   }
 
+
   function mouseScroll(event) {
+
+    // console.log(event.deltaY)
+    
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
     if (scrolling) return
     scrolling = true
-
     if (event.deltaY > 0) {
       main_section.scrollBy(0, windowHeight)
-    } else {
+    } else if (event.deltaY < 0){
       main_section.scrollBy(0, -windowHeight)
     }
+
   }
 
-  function finishedScrolling() {
-    // console.log(main_section.scrollTop % windowHeight)
+  function finishedScrolling(event) {
+
     if (main_section.scrollTop % windowHeight === 0) {
       scrolling = false
     }
