@@ -208,6 +208,7 @@ function init() {
 
 
   function mouseScroll(event) {
+    // console.log(window.navigator)
 
     // Not a perfect solution
     // console.log(previousDelta, event.deltaY)
@@ -221,12 +222,18 @@ function init() {
       case 1:
         if (!scrolling && event.deltaY > previousDelta) {
           scrolling = true
+          //! For Safari
+          // SmoothVerticalScrolling(aboutMe, 275, 'top')
+          //! for Chrome
           main_section.scrollBy(0, windowHeight)
         }
         break
       case -1:
         if (!scrolling && event.deltaY < previousDelta) {
           scrolling = true
+          // ! For Safari
+          // SmoothVerticalScrolling(aboutMe, 275, 'top')
+          // ! For Chrome
           main_section.scrollBy(0, -windowHeight)
         }
     }
@@ -242,6 +249,28 @@ function init() {
     // }
 
     //    previousDelta = event.deltaY
+  }
+
+  // ! FOR SAFARI?
+
+  function SmoothVerticalScrolling(e, time, where) {
+    var eTop = e.getBoundingClientRect().top
+    console.log(eTop)
+    var eAmt = eTop / 100
+    var curTime = 0
+    while (curTime <= time) {
+      // console.log(curTime)
+      window.setTimeout(SVS_B, curTime, eAmt, where)
+      curTime += time / 100
+    }
+  }
+
+  function SVS_B(eAmt, where) {
+    console.log(eAmt, where)
+    if (where == 'center' || where == '')
+      main_section.scrollBy(0, eAmt / 2)
+    if (where == 'top')
+      main_section.scrollBy(0, eAmt)
   }
 
   // ! TESTING OTHER SCROLLING METHODS
@@ -286,9 +315,7 @@ function init() {
   onTick()
 
 
-  // quickNavLines.forEach(navLine => {
-  //   navLine.addEventListener('click', add)
-  // })
+
   burgerMenu.addEventListener('click', burgerMenuFunction)
   main_section.addEventListener('scroll', finishedScrolling)
   document.addEventListener('touchstart', touchMove)
