@@ -10,6 +10,7 @@ function init() {
   const burgerMenu = document.querySelector('#burger_menu')
   const menuOverlay = document.querySelector('#menu_overlay')
   const quickNavLines = document.querySelectorAll('.quick_nav_buttons')
+  const nameTag = document.querySelector('#name_tag')
   // const pencil = document.querySelector('#pencil_img')
 
   const windowWidth = window.innerWidth
@@ -47,6 +48,11 @@ function init() {
   const colours = ['#C03221', '#88CCF1', '#F2D0A4', '#545E75', '#3F826D']
   
   const client = {
+    x: null,
+    y: null
+  }
+
+  const paralaxClient = {
     x: null,
     y: null
   }
@@ -198,7 +204,17 @@ function init() {
     clearTimeout(movementTimer)
     client.x = event.clientX
     client.y = event.clientY
+    // To reset ball movement
     movementTimer = setTimeout(clearMovement, 1000)
+
+    // Paralax Setup
+    paralaxClient.x = 0 - ((event.clientX - (windowWidth / 2)) / 100)
+    paralaxClient.y = 0 - ((event.clientY - (windowHeight / 2)) / 100)
+    console.log(paralaxClient)
+    // ! 3D Rotation
+    // nameTag.style.transform = `rotateY(${paralaxClient.x}deg) rotateZ(${paralaxClient.y}deg)`
+    // ! 2D Transform
+    nameTag.style.transform = `translate(${paralaxClient.x}px, ${paralaxClient.y}px)`
   }
 
   function touchMove(event) {
@@ -228,7 +244,7 @@ function init() {
             SmoothVerticalScrolling(275, 'down')
 
           } else {
-            console.log('Getting through')
+            // console.log('Getting through')
             main_section.scrollBy(0, windowHeight)
           }
         }
@@ -294,9 +310,9 @@ function init() {
 
   function finishedScrolling(event) {
 
-    console.log('scrolling')
+    // console.log('scrolling')
     if (main_section.scrollTop % windowHeight === 0) {
-      console.log('finished scrolling')
+      // console.log('finished scrolling')
       scrolling = false
       currentLocation = main_section.scrollTop / windowHeight
       nextButton.href = `#${pages[currentLocation + 1]}`
