@@ -20,7 +20,7 @@ function init() {
 
   let currentLocation = 0
 
-  const pages = ['', 'about_me', 'my_work', 'contact']
+  const pages = ['title_section', 'about_me', 'my_work', 'contact']
 
   let burgerOpen = false
   
@@ -208,33 +208,41 @@ function init() {
 
 
   function mouseScroll(event) {
-    // console.log(window.navigator)
-
-    // Not a perfect solution
-    // console.log(previousDelta, event.deltaY)
     
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
 
     const direction = Math.sign(event.deltaY)
 
+    // ! Browswer check
+    let isSafari = navigator.userAgent.indexOf('Safari') > -1
+    const isChrome = navigator.userAgent.indexOf('Chrome') > -1
+    if ((isChrome) && (isSafari)) isSafari = false
+
     switch (direction) {
       case 1:
         if (!scrolling && event.deltaY > previousDelta) {
           scrolling = true
-          //! For Safari
-          // SmoothVerticalScrolling(aboutMe, 275, 'top')
-          //! for Chrome
-          main_section.scrollBy(0, windowHeight)
+          //! For Safari vs Chrome
+          if (isSafari) {
+            SmoothVerticalScrolling(275, 'down')
+
+          } else {
+            console.log('Getting through')
+            main_section.scrollBy(0, windowHeight)
+          }
         }
         break
       case -1:
         if (!scrolling && event.deltaY < previousDelta) {
           scrolling = true
-          // ! For Safari
-          // SmoothVerticalScrolling(aboutMe, 275, 'top')
-          // ! For Chrome
-          main_section.scrollBy(0, -windowHeight)
+          // ! For Safari vs Chrome
+          if (isSafari) {
+            SmoothVerticalScrolling(275, 'up')
+          } else {
+            main_section.scrollBy(0, -windowHeight)
+          }
+
         }
     }
 
@@ -253,25 +261,30 @@ function init() {
 
   // ! FOR SAFARI?
 
-  function SmoothVerticalScrolling(e, time, where) {
-    var eTop = e.getBoundingClientRect().top
-    console.log(eTop)
-    var eAmt = eTop / 100
-    var curTime = 0
-    while (curTime <= time) {
-      // console.log(curTime)
-      window.setTimeout(SVS_B, curTime, eAmt, where)
-      curTime += time / 100
+  function SmoothVerticalScrolling(time, d) {
+    // var eTop = e.getBoundingClientRect().top
+    const totalScrollDistance = windowHeight
+    const distancePerLoop = totalScrollDistance / 100
+    let currentTime = 0
+    let loop = 1
+    while (currentTime < time) {
+      setTimeout(SVS_B, currentTime, distancePerLoop, loop, d)
+      currentTime += time / 100
+      loop++
     }
   }
 
-  function SVS_B(eAmt, where) {
-    console.log(eAmt, where)
-    if (where == 'center' || where == '')
-      main_section.scrollBy(0, eAmt / 2)
-    if (where == 'top')
-      main_section.scrollBy(0, eAmt)
+  function SVS_B(distancePerLoop, loop, d) {
+
+    // ! CANT USE SCROLLBY HERE BECAUSE IT DOESNT TAKE FLOATING POINTS SO THERE IS A MAJOR OFFSET!
+    if (d === 'down') {
+      main_section.scrollTop = (currentLocation * windowHeight) + distancePerLoop * loop
+    } else {
+      main_section.scrollTop = (currentLocation * windowHeight) - distancePerLoop * loop
+    }
   }
+
+
 
   // ! TESTING OTHER SCROLLING METHODS
   // function help() {
@@ -281,7 +294,9 @@ function init() {
 
   function finishedScrolling(event) {
 
+    console.log('scrolling')
     if (main_section.scrollTop % windowHeight === 0) {
+      console.log('finished scrolling')
       scrolling = false
       currentLocation = main_section.scrollTop / windowHeight
       nextButton.href = `#${pages[currentLocation + 1]}`
@@ -298,6 +313,7 @@ function init() {
       case true:
         burgerLines[0].classList.remove('burger_line_top_clicked')
         burgerLines[1].classList.remove('burger_line_bot_clicked')
+        // burgerMen
         menuOverlay.classList.remove('menu_overlay_open')
         burgerOpen = false
         break
@@ -322,6 +338,7 @@ function init() {
   document.addEventListener('touchmove', touchMove)
   document.addEventListener('mousemove', mouseMove)
   document.addEventListener('wheel', mouseScroll)
+  // ! NEED TO ADD BUTTON PRESSES FOR SMOOTH SCROLLING ON SAFARI
   // document.addEventListener('keydown', help) // ! Testing other scrolling methods
 }
 
