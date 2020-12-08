@@ -4,6 +4,8 @@ function init() {
   const canvas = document.querySelector('#canvas')
   const main_section = document.querySelector('#main_section')
   const aboutMe = document.querySelector('#about_me')
+  const myWork = document.querySelector('#my_work')
+  const contact = document.querySelector('#contact')
   const nextButton = document.querySelector('#next_button')
   const burgerMenu = document.querySelector('#burger_menu')
   const menu_overlay = document.querySelector('#menu_overlay')
@@ -12,9 +14,9 @@ function init() {
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
-  // const maxScrollSpeed = 100
-  // let currentScrollSpeed = 1
   let scrolling = false
+  let previousDelta = 0
+  const currentLocation = 0
 
   let burgerOpen = false
   
@@ -35,10 +37,6 @@ function init() {
   const circleSpeed = 30
   const circleStaticSpeed = 4
   let movementTimer
-
-  let scrollTimer
-
-  let scrollDirection
   
   const circles = []
   
@@ -74,6 +72,7 @@ function init() {
     return calculateDistanceBetweenCircles(circle, newCircle.positionX, newCircle.positionY, newCircle.radius)
   }
   
+  // For circle collision
   function circleChecker(newCircle) {
     for (let x = 0; x < circles.length; x++) {
       if (checkForOverlap(circles[x], newCircle)) {
@@ -101,6 +100,7 @@ function init() {
     circles.forEach(circle => {
       
       ctx.fillStyle = circle.colour
+      // ! Do the shadows look good?
       // ctx.shadowColor = 'rgba(0, 0, 0, 0.35)'
       // ctx.shadowBlur = 5
       // ctx.shadowOffsetX = 3
@@ -204,20 +204,45 @@ function init() {
 
 
   function mouseScroll(event) {
-
-    // console.log(event.deltaY)
+    console.log(scrolling)
     
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
-    if (scrolling) return
-    scrolling = true
-    if (event.deltaY > 0) {
-      main_section.scrollBy(0, windowHeight)
-    } else if (event.deltaY < 0){
-      main_section.scrollBy(0, -windowHeight)
+
+    const direction = Math.sign(event.deltaY)
+
+    switch (direction) {
+      case 1:
+        if (!scrolling && event.deltaY > previousDelta) {
+          scrolling = true
+          main_section.scrollBy(0, windowHeight)
+        }
+        break
+      case -1:
+        if (!scrolling && event.deltaY < previousDelta) {
+          scrolling = true
+          main_section.scrollBy(0, -windowHeight)
+        }
     }
 
+    previousDelta = event.deltaY
+  
+    // if (scrolling) return
+    // scrolling = true
+    // if (event.deltaY > 0 ) {
+    //   main_section.scrollBy(0, windowHeight)
+    // } else if (event.deltaY < 0){
+    //   main_section.scrollBy(0, -windowHeight)
+    // }
+
+    //    previousDelta = event.deltaY
   }
+
+  // ! TESTING OTHER SCROLLING METHODS
+  // function help() {
+  //  window.open('#about_me')
+  //   aboutMe.scrollIntoView()
+  // }
 
   function finishedScrolling(event) {
 
@@ -255,6 +280,7 @@ function init() {
   document.addEventListener('touchmove', touchMove)
   document.addEventListener('mousemove', mouseMove)
   document.addEventListener('wheel', mouseScroll)
+  // document.addEventListener('keydown', help) // ! Testing other scrolling methods
 }
 
 document.addEventListener('DOMContentLoaded', init)

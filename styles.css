@@ -33,6 +33,7 @@ ul {
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
 .main_section {
@@ -44,6 +45,11 @@ ul {
   /* background: linear-gradient(0deg, rgb(8, 18, 37) 0%, rgb(8, 18, 37) 25%, rgb(17, 38, 77) 100%); */
   font-family: 'Raleway', sans-serif;
   color: whitesmoke;
+}
+
+.outer_content_container {
+  height: 100%;
+  width: 100%;
 }
 
 /* TITLE PAGE */
@@ -85,12 +91,8 @@ background-repeat: no-repeat; */
   z-index: 1;
 }
 
-/* ABOUT ME  */
 
-.outer__content_container {
-  height: 100%;
-  width: 100%;
-}
+/* ABOUT ME  */
 
 .inner_container {
   height: 80%;
