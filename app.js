@@ -8,7 +8,8 @@ function init() {
   const contact = document.querySelector('#contact')
   const nextButton = document.querySelector('#next_button')
   const burgerMenu = document.querySelector('#burger_menu')
-  const menu_overlay = document.querySelector('#menu_overlay')
+  const menuOverlay = document.querySelector('#menu_overlay')
+  const quickNavLines = document.querySelectorAll('.quick_nav_buttons')
   // const pencil = document.querySelector('#pencil_img')
 
   const windowWidth = window.innerWidth
@@ -16,7 +17,10 @@ function init() {
 
   let scrolling = false
   let previousDelta = 0
-  const currentLocation = 0
+
+  let currentLocation = 0
+
+  const pages = ['', 'about_me', 'my_work', 'contact']
 
   let burgerOpen = false
   
@@ -204,7 +208,9 @@ function init() {
 
 
   function mouseScroll(event) {
-    console.log(scrolling)
+
+    // Not a perfect solution
+    // console.log(previousDelta, event.deltaY)
     
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
@@ -248,6 +254,12 @@ function init() {
 
     if (main_section.scrollTop % windowHeight === 0) {
       scrolling = false
+      currentLocation = main_section.scrollTop / windowHeight
+      nextButton.href = `#${pages[currentLocation + 1]}`
+      quickNavLines.forEach(navLine => {
+        navLine.classList.remove('quick_nav_line_long')
+      })
+      quickNavLines[currentLocation].classList.add('quick_nav_line_long')
     }
   }
 
@@ -257,13 +269,13 @@ function init() {
       case true:
         burgerLines[0].classList.remove('burger_line_top_clicked')
         burgerLines[1].classList.remove('burger_line_bot_clicked')
-        menu_overlay.classList.remove('menu_overlay_open')
+        menuOverlay.classList.remove('menu_overlay_open')
         burgerOpen = false
         break
       case false:
         burgerLines[0].classList.add('burger_line_top_clicked')
         burgerLines[1].classList.add('burger_line_bot_clicked')
-        menu_overlay.classList.add('menu_overlay_open')
+        menuOverlay.classList.add('menu_overlay_open')
         burgerOpen = true
         break
     }
@@ -274,6 +286,9 @@ function init() {
   onTick()
 
 
+  // quickNavLines.forEach(navLine => {
+  //   navLine.addEventListener('click', add)
+  // })
   burgerMenu.addEventListener('click', burgerMenuFunction)
   main_section.addEventListener('scroll', finishedScrolling)
   document.addEventListener('touchstart', touchMove)
