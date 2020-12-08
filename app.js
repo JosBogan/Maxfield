@@ -210,7 +210,7 @@ function init() {
     // Paralax Setup
     paralaxClient.x = 0 - ((event.clientX - (windowWidth / 2)) / 100)
     paralaxClient.y = 0 - ((event.clientY - (windowHeight / 2)) / 100)
-    console.log(paralaxClient)
+    // console.log(paralaxClient)
     // ! 3D Rotation
     // nameTag.style.transform = `rotateY(${paralaxClient.x}deg) rotateZ(${paralaxClient.y}deg)`
     // ! 2D Transform
@@ -242,9 +242,8 @@ function init() {
           //! For Safari vs Chrome
           if (isSafari) {
             SmoothVerticalScrolling(275, 'down')
-
           } else {
-            // console.log('Getting through')
+            console.log('Getting through')
             main_section.scrollBy(0, windowHeight)
           }
         }
@@ -256,6 +255,7 @@ function init() {
           if (isSafari) {
             SmoothVerticalScrolling(275, 'up')
           } else {
+            console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
           }
 

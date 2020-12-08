@@ -56,6 +56,9 @@ body {
 .outer_content_container {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inner_container {
@@ -63,7 +66,32 @@ body {
   width: 80%;
   background: rgba(255, 255, 255, 0.384);
   color: black;
+  display: flex;
+  justify-content: space-between;
 }
+
+.inner_container_text_container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.inner_container_image_container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.section_image {
+  height: 400px;
+  width: 400px;
+  background:  url('https://d7hftxdivxxvm.cloudfront.net/?resize_to=width&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FkRXvWtbPFj8pMvw082chOQ%2Flarger.jpg&width=1200&quality=80'), rgba(150, 20, 20, 0.5);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 
 /* TITLE PAGE */
 
