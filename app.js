@@ -49,7 +49,8 @@ function init() {
   
   const circles = []
   
-  const colours = ['#C03221', '#88CCF1', '#F2D0A4', '#545E75', '#3F826D']
+  // const colours = ['#C03221', '#88CCF1', '#F2D0A4', '#545E75', '#3F826D']
+  const colours = ['#E4BE9E'] 
   
   const client = {
     x: null,
