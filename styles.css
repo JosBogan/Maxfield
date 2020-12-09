@@ -10,7 +10,7 @@
 
   --primary_background: var(--mid_lavender);
   --secondary_background: ;
-  --primary_text: var(--dark_maroon);
+  --primary_text: var(--pale_teal);
   --secondary_text: ;
 }
 
@@ -18,6 +18,7 @@
   margin: 0;
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
+  /* box-sizing: border-box; /* ! TURNING THIS ON AFFECTS THE QUICK NAV - FIX LATER */
 }
 
 button,
@@ -87,7 +88,7 @@ body {
 
 .section_image_container {
   transition: all 0.8s cubic-bezier(.55,.08,.43,.95);
-  transform: translate(300px, 0);
+  transform: translate(300px, 20px);
   opacity: 0;
 }
 
@@ -96,14 +97,16 @@ body {
   height: 400px;
   width: 400px;
   /* opacity: 0; */
-  background:  url('https://d7hftxdivxxvm.cloudfront.net/?resize_to=width&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FkRXvWtbPFj8pMvw082chOQ%2Flarger.jpg&width=1200&quality=80');
+  background:  url('./assets/about_me.jpg');
+  background-position: 50% 100%;
   background-size: cover;
-  box-shadow: 5px 5px 22px 8px rgba(0,0,0,0.2);
+  /* box-shadow: 5px 5px 22px 8px rgba(0,0,0,0.2); */
+  box-shadow: 0px 63px 154px -20px rgba(0, 0, 0, 0.5);
   background-repeat: no-repeat;
 }
 
 .animation_rightside {
-  transform: translate(30px, 0);
+  transform: translate(30px, 20px);
   opacity: 1;
 }
 
@@ -123,11 +126,17 @@ body {
   transition: all 0.1s;
   color: var(--primary_text);
   cursor: pointer;
+  padding: 5px 10px;
+  border: 2px solid var(--primary_text);
+  border-radius: 20px;
 }
 
 .section_title:hover {
   transform: translate(-4px, -4px);
-  text-shadow: 4px 4px #3F826D;
+  text-shadow: 4px 4px #ffffff79;
+  box-shadow: 4px 4px #ffffff79;
+  /* text-shadow: 4px 4px #3F826D;
+  box-shadow: 4px 4px #3F826D; */
 }
 
 .animation_leftside {

@@ -123,11 +123,12 @@ function init() {
     circles.forEach(circle => {
       
       ctx.fillStyle = circle.colour
-      // ! Do the shadows look good?
-      // ctx.shadowColor = 'rgba(0, 0, 0, 0.35)'
-      // ctx.shadowBlur = 5
+      // ! Do the shadows look good? - too Performant
+      // ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
+      // ctx.shadowBlur = 145
       // ctx.shadowOffsetX = 3
-      // ctx.shadowOffsetY = 3
+      // ctx.shadowOffsetY = 63
+      //  box-shadow: 0px 63px 154px -20px rgba(0, 0, 0, 0.5);
 
       ctx.beginPath()
       ctx.ellipse(circle.position.x, circle.position.y, circle.radius, circle.radius, 0, 0, Math.PI * 2)
@@ -164,7 +165,10 @@ function init() {
     circles.forEach(circle => {
       // checking if the mouse is near
       const distance = calculateDistance(circle)
-      if (distance < circleSensitivity) {
+      if (
+        distance < circleSensitivity && 
+        client.x !== null && client.y !== null
+      ) {
         const unitVector = calculateUnitVector(circle) // Use this to find the angle it is flying off in
         const magnitude = circleSensitivity - distance
         // console.log(magnitude)
@@ -191,6 +195,7 @@ function init() {
         ) {
           circle.position.x += circle.direction[0]
         } else {
+          console.log('issue Here?')
           circle.direction[0] = (parseFloat(Math.random().toFixed(2)) - 0.5) / circleStaticSpeed
         }
         if (
@@ -283,7 +288,7 @@ function init() {
           scrolling = true
           //! For Safari vs Chrome
           if (isSafari) {
-            SmoothVerticalScrolling(275, 'down')
+            SmoothVerticalScrolling(400, 'down')
           } else {
             main_section.scrollBy(0, windowHeight)
           }
@@ -296,7 +301,7 @@ function init() {
           scrolling = true
           // ! For Safari vs Chrome
           if (isSafari) {
-            SmoothVerticalScrolling(275, 'up')
+            SmoothVerticalScrolling(400, 'up')
           } else {
             console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
