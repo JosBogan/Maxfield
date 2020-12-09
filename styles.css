@@ -64,10 +64,11 @@ body {
 .inner_container {
   height: 80%;
   width: 80%;
-  background: rgba(255, 255, 255, 0.384);
-  color: black;
+  /* background: rgba(255, 255, 255, 0.384); */
+  color: white;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .inner_container_text_container {
@@ -75,6 +76,7 @@ body {
   flex-grow: 1;
   justify-content: space-evenly;
   flex-direction: column;
+  align-items: center;
 }
 
 .inner_container_image_container {
@@ -85,11 +87,42 @@ body {
 }
 
 .section_image {
+  position: relative;
   height: 400px;
   width: 400px;
-  background:  url('https://d7hftxdivxxvm.cloudfront.net/?resize_to=width&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FkRXvWtbPFj8pMvw082chOQ%2Flarger.jpg&width=1200&quality=80'), rgba(150, 20, 20, 0.5);
+  background:  url('https://d7hftxdivxxvm.cloudfront.net/?resize_to=width&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FkRXvWtbPFj8pMvw082chOQ%2Flarger.jpg&width=1200&quality=80');
   background-size: cover;
+  transition: all 0.8s cubic-bezier(.55,.08,.43,.95);
+  transform: translate(800px);
   background-repeat: no-repeat;
+}
+
+.section_image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(100, 25, 25, 0.5)
+}
+
+.animation_rightside {
+  transform: translate(0, 0);
+  
+}
+
+.section_title {
+  font-size: 3em;
+  transition: all 0.8s;
+  transition-delay: 0.4s;
+  transform: translate(-300px, 0);
+  color: rgba(255, 255, 255, 0);
+}
+
+.animation_leftside {
+  transform: translate(0, 0);
+  color: rgba(255, 255, 255, 1)
 }
 
 

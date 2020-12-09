@@ -11,6 +11,10 @@ function init() {
   const menuOverlay = document.querySelector('#menu_overlay')
   const quickNavLines = document.querySelectorAll('.quick_nav_buttons')
   const nameTag = document.querySelector('#name_tag')
+
+
+  const sectionImages = document.querySelectorAll('.section_image')
+  const sectionTitles = document.querySelectorAll('.section_title')
   // const pencil = document.querySelector('#pencil_img')
 
   const windowWidth = window.innerWidth
@@ -222,18 +226,35 @@ function init() {
     client.y = event.touches[0].clientY
   }
 
+  function setAnimation(index) {
+    resetAnimations()
+    sectionImages[index].classList.add('animation_rightside')
+    sectionTitles[index].classList.add('animation_leftside')
+  }
+
+
+  function resetAnimations() {
+    sectionImages.forEach(image => {
+      image.classList.remove('animation_rightside')
+    })
+    sectionTitles.forEach(title => {
+      title.classList.remove('animation_leftside')
+    })
+  }
 
   function mouseScroll(event) {
     
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
-
+    
     const direction = Math.sign(event.deltaY)
-
+    
     // ! Browswer check
     let isSafari = navigator.userAgent.indexOf('Safari') > -1
     const isChrome = navigator.userAgent.indexOf('Chrome') > -1
     if ((isChrome) && (isSafari)) isSafari = false
+    
+    console.log(event.deltaY)
 
     switch (direction) {
       case 1:
@@ -243,8 +264,8 @@ function init() {
           if (isSafari) {
             SmoothVerticalScrolling(275, 'down')
           } else {
-            console.log('Getting through')
             main_section.scrollBy(0, windowHeight)
+            setAnimation(currentLocation)
           }
         }
         break
@@ -257,6 +278,7 @@ function init() {
           } else {
             console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
+            setAnimation(currentLocation)
           }
 
         }
