@@ -14,7 +14,10 @@ function init() {
 
 
   const sectionImages = document.querySelectorAll('.section_image')
+  const sectionImageContainers = document.querySelectorAll('.section_image_container')
   const sectionTitles = document.querySelectorAll('.section_title')
+  const sectionTitleContainers = document.querySelectorAll('.section_title_container')
+  const sectionTitleMovementControlContainter = document.querySelectorAll('.section_title_movement_control_containter')
   // const pencil = document.querySelector('#pencil_img')
 
   const windowWidth = window.innerWidth
@@ -57,7 +60,12 @@ function init() {
     y: null
   }
 
-  const paralaxClient = {
+  const paralaxClient1 = {
+    x: null,
+    y: null
+  }
+
+  const paralaxClient2 = {
     x: null,
     y: null
   }
@@ -213,13 +221,24 @@ function init() {
     movementTimer = setTimeout(clearMovement, 1000)
 
     // Paralax Setup
-    paralaxClient.x = 0 - ((event.clientX - (windowWidth / 2)) / 100)
-    paralaxClient.y = 0 - ((event.clientY - (windowHeight / 2)) / 100)
+    paralaxClient1.x = 0 - ((event.clientX - (windowWidth / 2)) / 50)
+    paralaxClient1.y = 0 - ((event.clientY - (windowHeight / 2)) / 50)
+    paralaxClient2.x = 0 - ((event.clientX - (windowWidth / 2)) / 10)
+    paralaxClient2.y = 0 - ((event.clientY - (windowHeight / 2)) / 10)
     // console.log(paralaxClient)
     // ! 3D Rotation
     // nameTag.style.transform = `rotateY(${paralaxClient.x}deg) rotateZ(${paralaxClient.y}deg)`
     // ! 2D Transform
-    nameTag.style.transform = `translate(${paralaxClient.x}px, ${paralaxClient.y}px)`
+    // ! content moving
+    sectionImages.forEach(image => {
+      // console.log('doing this?')
+      image.style.transform = `translate(${paralaxClient1.x}px, ${paralaxClient1.y}px)`
+    })
+    // sectionImages[currentLocation - 1].style.transform = `translate(${paralaxClient1.x}px, ${paralaxClient1.y}px)`
+    sectionTitleMovementControlContainter.forEach(title => {
+      title.style.transform = `translate(${paralaxClient2.x}px, ${paralaxClient2.y}px)`
+    })
+    // sectionTitleMovementControlContainter[currentLocation - 1].style.transform = `translate(${paralaxClient2.x}px, ${paralaxClient2.y}px)`
   }
 
   function touchMove(event) {
@@ -229,16 +248,17 @@ function init() {
 
   function setAnimation(index) {
     resetAnimations()
-    sectionImages[index].classList.add('animation_rightside')
-    sectionTitles[index].classList.add('animation_leftside')
+    console.log('doing this?')
+    sectionImageContainers[index].classList.add('animation_rightside')
+    sectionTitleContainers[index].classList.add('animation_leftside')
   }
 
 
   function resetAnimations() {
-    sectionImages.forEach(image => {
+    sectionImageContainers.forEach(image => {
       image.classList.remove('animation_rightside')
     })
-    sectionTitles.forEach(title => {
+    sectionTitleContainers.forEach(title => {
       title.classList.remove('animation_leftside')
     })
   }
@@ -255,7 +275,7 @@ function init() {
     const isChrome = navigator.userAgent.indexOf('Chrome') > -1
     if ((isChrome) && (isSafari)) isSafari = false
     
-    console.log(event.deltaY)
+    // console.log(event.deltaY)
 
     switch (direction) {
       case 1:
@@ -266,8 +286,8 @@ function init() {
             SmoothVerticalScrolling(275, 'down')
           } else {
             main_section.scrollBy(0, windowHeight)
-            setAnimation(currentLocation)
           }
+          setAnimation(currentLocation)
         }
         break
       case -1:
@@ -279,8 +299,8 @@ function init() {
           } else {
             console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
-            setAnimation(currentLocation)
           }
+          setAnimation(currentLocation - 2)
 
         }
     }
@@ -352,7 +372,7 @@ function init() {
       case true:
         burgerLines[0].classList.remove('burger_line_top_clicked')
         burgerLines[1].classList.remove('burger_line_bot_clicked')
-        // burgerMen
+        // burgerMenu
         menuOverlay.classList.remove('menu_overlay_open')
         burgerOpen = false
         break
