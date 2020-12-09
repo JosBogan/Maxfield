@@ -287,6 +287,7 @@ function init() {
           } else {
             main_section.scrollBy(0, windowHeight)
           }
+          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
           setAnimation(currentLocation)
         }
         break
@@ -300,6 +301,7 @@ function init() {
             console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
           }
+          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
           setAnimation(currentLocation - 2)
 
         }
