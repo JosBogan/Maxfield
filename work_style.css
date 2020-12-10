@@ -5,12 +5,21 @@
   --pale_blue: #C9E4E7;
   --dark_maroon: #301014;
 
+  --muted_pink:#A53860;
+
+  --floral_lavender: #AA7DCE;
+
+  --indian_red: #E15554;
+  --pastel_violet: #7768AE;
+  --pastel_green: #3BB273;
+
   --mid_lavender: #71697A;
   --pale_teal: #D0E1D4;
 
-  --primary_background: var(--mid_lavender);
+  --primary_background: var(--pale_blue);
   --secondary_background: ;
-  --primary_text: var(--pale_teal);
+  --primary_accents: var(--indian_red);
+  --primary_text: var(--indian_red);
   --secondary_text: ;
 }
 
@@ -55,6 +64,22 @@ body {
   pointer-events: none;
 }
 
+.page_header {
+  /* position: absolute; */
+  /* transition: all 0.01s; */
+  position: fixed;
+  font-family: 'Raleway', sans-serif;
+  top: 200px;
+  right: 100px;
+}
+
+.page_title {
+  font-weight: 100;
+  text-align: right;
+  font-size: 6em;
+  color: var(--primary_text);
+}
+
 .page_container {
   display: flex;
   justify-content: center;
@@ -67,10 +92,34 @@ body {
   /* overflow: scroll; */
   background-color: #fff;
   width: 100%;
-  padding: 100px 50px;
+  padding: 0 0 100px 0;
   text-align: justify;
   box-shadow: 0px 63px 154px -20px rgba(0, 0, 0, 0.5);
   z-index: 1;
+}
+
+.writing_excerpt {
+  padding: 0 100px 0 100px;
+}
+
+.tags_container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.tags_container > li {
+  flex: 1;
+  height: 100px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* border-right: 1px solid rgba(1, 1, 1, 0.5); */
+}
+
+.tags_container > li:hover {
+  background: rgb(194, 194, 194)
 }
 
 .section_title {
@@ -78,7 +127,7 @@ body {
   align-items: center;
   justify-content: start;
   margin-bottom: 100px;
-  margin-left: -50px;
+  /* margin-left: -50px; */
   font-weight: 300;
 }
 
@@ -87,10 +136,137 @@ body {
   margin-right: 50px;
   height: 2px;
   width: 80px;
-  background-color: #C1666B;
+  background-color: var(--primary_accents);
 }
 
 .writing_excerpt {
   text-shadow: 0px 0px 20px rgba(0,0,0,0.5);
   font-family: 'Lato', sans-serif;
+}
+
+/* Burger Menu */
+
+.burger_menu {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  width: 50px;
+  height: 20px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 3;
+  /* margin-top: 50px;
+  margin-right: 50px; */
+}
+
+.burger_menu:hover {
+  transform: scale(1.1);
+}
+
+
+.burger_line {
+  transition: all 0.2s;
+  height: 2px;
+  background-color: var(--primary_accents);
+}
+
+.burger_line_top {
+  margin-bottom: 8px;
+}
+.burger_line_bot {
+  margin-top: 8px
+}
+
+.burger_line_top_clicked {
+  margin-bottom: -1px;
+  transform: rotate(45deg)
+}
+
+.burger_line_bot_clicked {
+  margin-top: -1px;
+  transform: rotate(-45deg)
+}
+
+/* PERSONAL LINKS */
+
+.personal_links {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  /* color: white; */
+}
+
+.personal_links li {
+  font-size: 2em;
+  transition: all 0.2s;
+  cursor: pointer;
+  color: var(--primary_text);
+  opacity: 0.4;
+}
+
+.personal_links li:hover {
+  opacity: 1;
+}
+
+.name_tag {
+  position: fixed;
+  top: 56px;
+  left: 100px;
+  font-family: 'Raleway', sans-serif;
+  color: var(--primary_text);
+  font-size: 1.2em;
+  z-index: 1;
+}
+
+/* MENU */
+
+.menu_overlay {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  left: 0;
+  width: 100vw;
+  height: 0vh;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.menu_overlay_open {
+  height: 100vh;
+}
+
+.menu_list {
+  height: 100%;
+  /* color: var(--primary_text); */
+  /* justify-content: space-evenly; */
+  display: flex;
+  flex-direction: column;
+}
+
+.menu_list > li {
+  display: flex;
+  /* color: var(--primary_text); */
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 3em;
+  flex-grow: 1;
+  /* cursor: pointer; */
+  transition: all 0.1s;
+}
+
+.menu_list > li > div {
+  transition: all 0.2s;
+  color: white;
+  cursor: pointer;
+}
+
+.menu_list > li > div:hover {
+  text-shadow: 4px 4px var(--primary_text);
+  transform: translate(-4px, -4px);
 }

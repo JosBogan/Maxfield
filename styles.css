@@ -5,12 +5,23 @@
   --pale_blue: #C9E4E7;
   --dark_maroon: #301014;
 
+  --muted_pink:#A53860;
+
+  --floral_lavender: #AA7DCE;
+  /* --floral_lavender: #8663a3; */
+  /* --floral_lavender: #c28fec; */
+
+  --indian_red: #E15554;
+  --pastel_violet: #7768AE;
+  --pastel_green: #3BB273;
+
   --mid_lavender: #71697A;
   --pale_teal: #D0E1D4;
 
-  --primary_background: var(--mid_lavender);
+  --primary_background: var(--pale_blue);
   --secondary_background: ;
-  --primary_text: var(--pale_teal);
+  --primary_accents: var(--indian_red);
+  --primary_text: var(--indian_red);
   --secondary_text: ;
 }
 
@@ -127,14 +138,14 @@ body {
   color: var(--primary_text);
   cursor: pointer;
   padding: 5px 10px;
-  border: 2px solid var(--primary_text);
+  border: 2px solid var(--primary_accents);
   border-radius: 20px;
 }
 
 .section_title:hover {
   transform: translate(-4px, -4px);
-  text-shadow: 4px 4px #ffffff79;
-  box-shadow: 4px 4px #ffffff79;
+  text-shadow: 4px 4px var(--floral_lavender);
+  box-shadow: 4px 4px var(--floral_lavender);
   /* text-shadow: 4px 4px #3F826D;
   box-shadow: 4px 4px #3F826D; */
 }
@@ -168,7 +179,15 @@ body {
 
 /* ABOUT ME  */
 
+.about_me_image {
+  background-image: url('./assets/about_me.jpg');
+}
 
+/* MY WORK */
+
+.my_work_image {
+  background-image: url('./assets//fifty_shades.jpg');
+}
 
 /* NEXT PAGE */
 
@@ -189,14 +208,14 @@ body {
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-top: 30px solid var(--primary_text);
+  border-top: 30px solid var(--primary_accents);
 }
 
 .upper_chevron {
   position: relative;
   top: 10px;
   z-index: 100;
-  transition: all 0.2s;
+  transition: all 0.1s;
 }
 
 /* BURGER MENU */
@@ -225,7 +244,7 @@ body {
 .burger_line {
   transition: all 0.2s;
   height: 2px;
-  background-color: var(--primary_text);
+  background-color: var(--primary_accents);
 }
 
 .burger_line_top {
@@ -258,11 +277,12 @@ body {
   font-size: 2em;
   transition: all 0.2s;
   cursor: pointer;
-  color: rgba(255,255,255, 0.4);
+  color: var(--primary_text);
+  opacity: 0.4;
 }
 
 .personal_links li:hover {
-  color: rgba(255,255,255, 1);
+  opacity: 1;
 }
 
 .name_tag {
@@ -270,7 +290,7 @@ body {
   top: 56px;
   left: 100px;
   font-family: 'Raleway', sans-serif;
-  color: white;
+  color: var(--primary_text);
   font-size: 1.2em;
 }
 
@@ -294,7 +314,7 @@ body {
 
 .menu_list {
   height: 100%;
-  color: white;
+  /* color: var(--primary_text); */
   /* justify-content: space-evenly; */
   display: flex;
   flex-direction: column;
@@ -302,6 +322,7 @@ body {
 
 .menu_list > li {
   display: flex;
+  /* color: var(--primary_text); */
   justify-content: center;
   align-items: center;
   font-family: 'Lato', sans-serif;
@@ -318,7 +339,7 @@ body {
 }
 
 .menu_list > li > div:hover {
-  text-shadow: 4px 4px #3F826D;
+  text-shadow: 4px 4px var(--primary_text);
   transform: translate(-4px, -4px);
 }
 
@@ -341,7 +362,7 @@ body {
 
 .quick_nav_line {
 
-  background: var(--primary_text);
+  background: var(--primary_accents);
   display: block;
   height: 100%;
   width: 100%;

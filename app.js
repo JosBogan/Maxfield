@@ -53,7 +53,7 @@ function init() {
   const circles = []
   
   // const colours = ['#C03221', '#88CCF1', '#F2D0A4', '#545E75', '#3F826D']
-  const colours = ['#E4BE9E'] 
+  const colours = ['#AA7DCE', '#8663a3', 'c28fec'] 
   
   const client = {
     x: null,
@@ -365,7 +365,7 @@ function init() {
       // console.log('finished scrolling')
       scrolling = false
       currentLocation = main_section.scrollTop / windowHeight
-      nextButton.href = `#${pages[currentLocation + 1]}`
+      // nextButton.href = `#${pages[currentLocation + 1]}`
       quickNavLines.forEach(navLine => {
         navLine.classList.remove('quick_nav_line_long')
       })

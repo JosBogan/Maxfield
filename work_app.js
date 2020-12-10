@@ -1,12 +1,16 @@
 function init() {
 
   const canvas = document.querySelector('#canvas')
+  const pageHeader = document.querySelector('#page_header')
+  const burgerMenu = document.querySelector('#burger_menu')
+  const menuOverlay = document.querySelector('#menu_overlay')
 
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
   canvas.width = windowWidth
-  canvas.height = windowHeight
+  // canvas.height = windowHeight
+  canvas.height = windowHeight - 100 // ! To account for tags!
 
   const ctx = canvas.getContext('2d')
   
@@ -18,10 +22,12 @@ function init() {
   const circleSpeed = 30
   const circleStaticSpeed = 4
   let movementTimer
+
+  let burgerOpen = false
   
   const circles = []
 
-  const colours = ['#E4BE9E'] 
+  const colours = ['#AA7DCE', '#8663a3', 'c28fec'] 
   
   const client = {
     x: null,
@@ -189,12 +195,40 @@ function init() {
     client.y = event.touches[0].clientY
   }
 
+  function pageScroll(event) {
+    // pageHeader.style.top = `${200 + (window.scrollY / 2)}px`
+    pageHeader.style.transform = `translateY(${-window.scrollY / 2}px)`
+    // pageHeader.style.transform = `translateY(${Math.floor(window.scrollY / 2)}px)`
+    // console.log(window.scrollY)
+  }
+
+  function burgerMenuFunction() {
+    const burgerLines = burgerMenu.childNodes
+    switch (burgerOpen) {
+      case true:
+        burgerLines[0].classList.remove('burger_line_top_clicked')
+        burgerLines[1].classList.remove('burger_line_bot_clicked')
+        // burgerMenu
+        menuOverlay.classList.remove('menu_overlay_open')
+        burgerOpen = false
+        break
+      case false:
+        burgerLines[0].classList.add('burger_line_top_clicked')
+        burgerLines[1].classList.add('burger_line_bot_clicked')
+        menuOverlay.classList.add('menu_overlay_open')
+        burgerOpen = true
+        break
+    }
+  }
+
   createCircles(numberOfCircles)
   onTick()
 
+  burgerMenu.addEventListener('click', burgerMenuFunction)
   document.addEventListener('touchstart', touchMove)
   document.addEventListener('touchmove', touchMove)
   document.addEventListener('mousemove', mouseMove)
+  document.addEventListener('scroll', pageScroll)
 
 }
 
