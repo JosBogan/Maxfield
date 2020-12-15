@@ -108,7 +108,7 @@ body {
   height: 400px;
   width: 400px;
   /* opacity: 0; */
-  background:  url('./assets/about_me.jpg');
+  background:  url('../assets/about_me.jpg');
   background-position: 50% 100%;
   background-size: cover;
   /* box-shadow: 5px 5px 22px 8px rgba(0,0,0,0.2); */
@@ -180,13 +180,13 @@ body {
 /* ABOUT ME  */
 
 .about_me_image {
-  background-image: url('./assets/about_me.jpg');
+  background-image: url('../assets/about_me.jpg');
 }
 
 /* MY WORK */
 
 .my_work_image {
-  background-image: url('./assets//fifty_shades.jpg');
+  background-image: url('../assets//fifty_shades.jpg');
 }
 
 /* NEXT PAGE */

@@ -3,9 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/about_style.css"/>
+  <script src="./scripts/about_me.js"></script>
   <title>About Me</title>
 </head>
 <body>
-  Hello!
+
+  <div class="menu_overlay" id="menu_overlay">
+    <ul class="menu_list">
+      <li><div><a href="./about_me.html">About me</a></div></li>
+      <li><div><a href="./work.html">My Writings</a></div></li>
+      <li><div><a href="./index.html">Contact</a></div></li>
+    </ul>
+  </div>
+  <main>
+    <canvas class="canvas" id="canvas" width="" height=""></canvas>
+    <div class="page_header" id="page_header">
+      <h1 class="page_title" id="page_title">About</br>Me</h1>
+    </div>
+    <div class="page_container">
+    <div class="writings_container">
+      <ul class="tags_container" id="tags_container">
+        <li>Education</li>
+        <li>Experience</li>
+        <li>Me</li>
+      </ul>
+      <div id="all_excerpt_container">
+      <h1 class="section_title"><span class="section_title_line"></span>Sesh</h1>
+    </div>
+    </div>
+  </div>
+  <div class="personal_links">
+    <ul>
+      <li><a href="https://www.linkedin.com/in/nat-maxfield-0a9a90130/" target="blank"><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="./index.html"><i class="fas fa-long-arrow-alt-left"></a></i></li>
+    </ul>
+  </div>
+  <div class="name_tag" id="name_tag">Nat Maxfield</div>
+  <div class="burger_menu" id="burger_menu"><div class="burger_line burger_line_top"></div><div class="burger_line burger_line_bot"></div></div>
+  </main>
 </body>
 </html>

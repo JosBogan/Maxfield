@@ -46,6 +46,7 @@ textarea {
 
 a {
   color: inherit;
+  
 }
 
 ul {
@@ -102,6 +103,10 @@ body {
   padding: 0 100px 0 100px;
 }
 
+.hidden {
+  display: none;
+}
+
 .tags_container {
   display: flex;
   justify-content: space-evenly;
@@ -115,11 +120,16 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background: rgb(235, 235, 235)
   /* border-right: 1px solid rgba(1, 1, 1, 0.5); */
 }
 
 .tags_container > li:hover {
-  background: rgb(194, 194, 194)
+  background: #fff
+}
+
+.tags_container > .tag_selected {
+  background: #fff;
 }
 
 .section_title {
