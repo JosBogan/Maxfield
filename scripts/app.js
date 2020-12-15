@@ -391,13 +391,20 @@ function init() {
         break
     }
   }
+
+  // function navClickedScroll(event) {
+  //   currentLocation = quickNavLines.indexOf(event.target)
+  //   setAnimation(currentLocation)
+  // }
   
   
   createCircles(numberOfCircles)
   onTick()
 
 
-
+  // quickNavLines.forEach(link => {
+  //   link.addEventListener('click', navClickedScroll)
+  // })
   burgerMenu.addEventListener('click', burgerMenuFunction)
   main_section.addEventListener('scroll', finishedScrolling)
   document.addEventListener('touchstart', touchMove)
