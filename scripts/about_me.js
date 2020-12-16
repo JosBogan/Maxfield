@@ -197,7 +197,7 @@ function init() {
 
   function pageScroll(event) {
     // pageHeader.style.top = `${200 + (window.scrollY / 2)}px`
-    pageHeader.style.transform = `translateY(${-window.scrollY / 2}px)`
+    pageHeader.style.transform = `translateY(calc(-50% + ${-window.scrollY / 2}px))`
     // pageHeader.style.transform = `translateY(${Math.floor(window.scrollY / 2)}px)`
     // console.log(window.scrollY)
   }
