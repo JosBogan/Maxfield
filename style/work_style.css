@@ -28,6 +28,7 @@
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
   box-sizing: border-box;
+  font-weight: 300;
 }
 
 button,
@@ -51,6 +52,10 @@ a {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+p {
+  /* font-weight: 300; */
 }
 
 body {
