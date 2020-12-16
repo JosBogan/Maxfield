@@ -10,7 +10,7 @@ function init() {
 
   canvas.width = windowWidth
   // canvas.height = windowHeight
-  canvas.height = windowHeight - 100 // ! To account for tags!
+  canvas.height = windowHeight // ! To account for tags!
 
   const ctx = canvas.getContext('2d')
   

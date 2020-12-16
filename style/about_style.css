@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Open+Sans:wght@300&family=Raleway:wght@100;200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Open+Sans:wght@300&family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap');
 
 :root {
   --pale_blue_gray: #666A86;
@@ -93,7 +93,7 @@ body {
   /* overflow: scroll; */
   background-color: #fff;
   width: 100%;
-  padding: 0 0 100px 0;
+  padding: 100px 0 0 0;
   text-align: justify;
   box-shadow: 0px 63px 154px -20px rgba(0, 0, 0, 0.5);
   z-index: 1;
@@ -110,12 +110,12 @@ body {
 .tags_container {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 100px;
 }
 
 .tags_container > li {
   flex: 1;
   height: 100px;
-  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,6 +139,10 @@ body {
   margin-bottom: 100px;
   /* margin-left: -50px; */
   font-weight: 300;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
 }
 
 .section_title_line {
@@ -149,9 +153,53 @@ body {
   background-color: var(--primary_accents);
 }
 
+.header_first_letter {
+  color: var(--floral_lavender);
+  font-weight: 800;
+}
+
 .writing_excerpt {
   text-shadow: 0px 0px 20px rgba(0,0,0,0.5);
   font-family: 'Lato', sans-serif;
+}
+
+/* SCROLL TAG */
+
+.scroll_tag {
+  position: fixed;
+  bottom: 0px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll_tag_text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: -1px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 20px;
+  color: var(--primary_text);
+}
+
+.scroll_tag_line {
+  background-color: var(--primary_accents);
+  height: 50px;
+  width: 1px;
+}
+
+/* ABOUT ME */
+
+.about_me_section {
+  padding: 0 0 100px 0;
+}
+
+.about_me_text_content {
+  padding: 0px 100px 0 100px;
 }
 
 /* Burger Menu */

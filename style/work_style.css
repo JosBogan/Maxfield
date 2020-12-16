@@ -109,12 +109,12 @@ body {
 .tags_container {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 100px;
 }
 
 .tags_container > li {
   flex: 1;
   height: 100px;
-  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +151,35 @@ body {
 .writing_excerpt {
   text-shadow: 0px 0px 20px rgba(0,0,0,0.5);
   font-family: 'Lato', sans-serif;
+}
+
+/* SCROLL TAG */
+
+.scroll_tag {
+  position: fixed;
+  bottom: 95px;
+  left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll_tag_text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: -1px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 20px;
+  color: var(--primary_text);
+}
+
+.scroll_tag_line {
+  background-color: var(--primary_accents);
+  height: 50px;
+  width: 1px;
 }
 
 /* Burger Menu */
