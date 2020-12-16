@@ -183,9 +183,8 @@ function init() {
 
   function mouseMove(event) {
     clearTimeout(movementTimer)
-    console.log('here')
     client.x = event.clientX
-    client.y = event.clientY
+    client.y = event.pageY
     // To reset ball movement
     movementTimer = setTimeout(clearMovement, 1000)
   }

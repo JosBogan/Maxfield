@@ -82,6 +82,7 @@ function init() {
   const tagsContainer = document.querySelector('#tags_container')
   const allExcerptContainer = document.querySelector('#all_excerpt_container')
 
+  const tagListHeight = 100
   const allTags = []
   const allExcerpts = []
   const currentExcerpt = 0
@@ -91,7 +92,7 @@ function init() {
 
   canvas.width = windowWidth
   // canvas.height = windowHeight
-  canvas.height = windowHeight - 100 // ! To account for tags!
+  canvas.height = windowHeight - tagListHeight // ! To account for tags!
 
   const ctx = canvas.getContext('2d')
   
@@ -131,8 +132,8 @@ function init() {
     const radius = Math.floor(Math.random() * (maxRadius - minRadius)) + minRadius
     let positionX = Math.ceil(Math.random() * windowWidth)
     positionX = Math.min(Math.max(positionX, 0 + radius), windowWidth - radius)
-    let positionY = Math.ceil(Math.random() * windowHeight) 
-    positionY = Math.min(Math.max(positionY, 0 + radius), windowHeight - radius)
+    let positionY = Math.ceil(Math.random() * (windowHeight - tagListHeight)) 
+    positionY = Math.min(Math.max(positionY, 0 + radius), (windowHeight - tagListHeight) - radius)
     return { radius, positionX, positionY }
   }
 
@@ -226,7 +227,7 @@ function init() {
           circle.position.x += vector
         }
         if (
-          !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) + circle.radius >= windowHeight) &&
+          !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) + circle.radius >= windowHeight - tagListHeight) &&
           !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) - circle.radius <= 0)
         ) {
           const vector = unitVector[1] * (magnitude / circleSpeed)
@@ -243,7 +244,7 @@ function init() {
           circle.direction[0] = (parseFloat(Math.random().toFixed(2)) - 0.5) / circleStaticSpeed
         }
         if (
-          !(circle.position.y + circle.direction[1] + circle.radius >= windowHeight) &&
+          !(circle.position.y + circle.direction[1] + circle.radius >= windowHeight - tagListHeight) &&
           !(circle.position.y + circle.direction[1] - circle.radius <= 0)
         ) {
           circle.position.y += circle.direction[1]
@@ -264,9 +265,8 @@ function init() {
 
   function mouseMove(event) {
     clearTimeout(movementTimer)
-    console.log('here')
     client.x = event.clientX
-    client.y = event.clientY
+    client.y = event.pageY
     // To reset ball movement
     movementTimer = setTimeout(clearMovement, 1000)
   }
