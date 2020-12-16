@@ -164,7 +164,7 @@ body {
 
 .scroll_tag {
   position: fixed;
-  bottom: 95px;
+  bottom: 100px;
   left: 50px;
   display: flex;
   flex-direction: column;
