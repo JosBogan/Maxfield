@@ -195,7 +195,6 @@ function init() {
         ) {
           circle.position.x += circle.direction[0]
         } else {
-          console.log('issue Here?')
           circle.direction[0] = (parseFloat(Math.random().toFixed(2)) - 0.5) / circleStaticSpeed
         }
         if (
@@ -253,9 +252,9 @@ function init() {
 
   function setAnimation(index) {
     resetAnimations()
-    console.log('doing this?')
-    sectionImageContainers[index].classList.add('animation_rightside')
-    sectionTitleContainers[index].classList.add('animation_leftside')
+    console.log(index)
+    if (index >= 0) sectionImageContainers[index].classList.add('animation_rightside')
+    if (index >= 0) sectionTitleContainers[index].classList.add('animation_leftside')
   }
 
 
@@ -325,11 +324,34 @@ function init() {
     //    previousDelta = event.deltaY
   }
 
+  function autoScroll(sectionId) {
+    // ! Browswer check
+    let isSafari = navigator.userAgent.indexOf('Safari') > -1
+    const isChrome = navigator.userAgent.indexOf('Chrome') > -1
+    if ((isChrome) && (isSafari)) isSafari = false
+
+    main_section.scrollTo(0, windowHeight * parseInt(sectionId))
+    setAnimation(parseInt(sectionId) - 1)
+
+    const locationDifference = currentLocation - parseInt(sectionId)
+
+    if (isSafari) {
+      console.log('is safari')
+      if (Math.sign(locationDifference) === -1) {
+        SmoothVerticalScrolling(400, 'down', Math.abs(locationDifference))
+      } else if (Math.sign(locationDifference) === 1) {
+        SmoothVerticalScrolling(400, 'up', Math.abs(locationDifference))
+      }
+    } else {
+      main_section.scrollTo(0, windowHeight * parseInt(sectionId))
+    }
+    setAnimation(parseInt(sectionId) - 1)
+  }
+
   // ! FOR SAFARI?
 
-  function SmoothVerticalScrolling(time, d) {
-    // var eTop = e.getBoundingClientRect().top
-    const totalScrollDistance = windowHeight
+  function SmoothVerticalScrolling(time, d, multiplier = 1) {
+    const totalScrollDistance = windowHeight * multiplier
     const distancePerLoop = totalScrollDistance / 100
     let currentTime = 0
     let loop = 1
@@ -392,19 +414,19 @@ function init() {
     }
   }
 
-  // function navClickedScroll(event) {
-  //   currentLocation = quickNavLines.indexOf(event.target)
-  //   setAnimation(currentLocation)
-  // }
+  function navClickedScroll(event) {
+    autoScroll(event.target.dataset.id)
+    // console.log(event.target.dataset.id)
+  }
   
   
   createCircles(numberOfCircles)
   onTick()
 
 
-  // quickNavLines.forEach(link => {
-  //   link.addEventListener('click', navClickedScroll)
-  // })
+  quickNavLines.forEach(link => {
+    link.addEventListener('click', navClickedScroll)
+  })
   burgerMenu.addEventListener('click', burgerMenuFunction)
   main_section.addEventListener('scroll', finishedScrolling)
   document.addEventListener('touchstart', touchMove)
