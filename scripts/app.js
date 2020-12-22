@@ -228,7 +228,6 @@ function init() {
   }
   
   function mouseMove(event) {
-    wasTouchMove = false
     clearTimeout(movementTimer)
     client.x = event.clientX
     client.y = event.clientY
@@ -248,8 +247,7 @@ function init() {
 
     if (wasTouchMove) return
 
-    console.log(wasTouchMove)
-    console.log('here')
+    console.log(event)
 
     sectionImages.forEach(image => {
       // console.log('doing this?')
@@ -260,11 +258,12 @@ function init() {
       title.style.transform = `translate(${paralaxClient2.x}px, ${paralaxClient2.y}px)`
     })
     // sectionTitleMovementControlContainter[currentLocation - 1].style.transform = `translate(${paralaxClient2.x}px, ${paralaxClient2.y}px)`
+    wasTouchMove = false
   }
 
   function touchMove(event) {
     wasTouchMove = true
-    console.log(wasTouchMove)
+    console.log('touchmove', wasTouchMove)
     if (event.touches.length > 1) {
       client.x = event.touches[0].clientX
       client.y = event.touches[0].clientY
@@ -281,7 +280,6 @@ function init() {
 
   function setAnimation(index) {
     resetAnimations()
-    console.log(index)
     if (index >= 0) sectionImageContainers[index].classList.add('animation_rightside')
     if (index >= 0) sectionTitleContainers[index].classList.add('animation_leftside')
   }
@@ -298,7 +296,6 @@ function init() {
 
   function touchScroll(directionRaw) {
 
-    console.log(directionRaw)
     
     if (directionRaw > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (directionRaw < 0 && main_section.scrollTop <= 0) return
