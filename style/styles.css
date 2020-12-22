@@ -426,54 +426,19 @@ body {
   width: 50px;
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
-  
-  /* CSS */
-
-  .quick_nav {
-    bottom: 50px;
-    left: calc(50vw - 40px);
-    /* width: 100vw; */
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    top: auto;
-    transform: rotate(-90deg)
-  }
-
-  .quick_nav_buttons:hover {
-    height: 30px;
-    width: auto;
-  }
-
-  .quick_nav_line_long {
-    height: 30px;
-    width: auto;
-  }
-
-/* 
-  .quick_nav_list {
-    width: 80px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-  } */
-  
-}
-
 @media (max-width: 767px) {
   
   /* CSS */
 
   .quick_nav {
     bottom: 50px;
-    left: calc(50vw - 40px);
+    left: 50vw;
     /* width: 100vw; */
     display: flex;
     justify-content: center;
     height: 50px;
     top: auto;
-    transform: rotate(-90deg)
+    transform: rotate(-90deg) translateY(-50%)
   }
 
   .quick_nav_buttons:hover {
