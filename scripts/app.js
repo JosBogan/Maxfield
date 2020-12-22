@@ -262,7 +262,6 @@ function init() {
 
   function touchMove(event) {
     wasTouchMove = true
-    console.log('touchmove', wasTouchMove)
     if (event.touches.length > 1) {
       client.x = event.touches[0].clientX
       client.y = event.touches[0].clientY
@@ -317,6 +316,11 @@ function init() {
             main_section.scrollBy(0, windowHeight)
           }
           // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          quickNavLines.forEach(navLine => {
+            navLine.classList.remove('quick_nav_line_long')
+          })
+          quickNavLines[currentLocation + 1].classList.add('quick_nav_line_long')
+
           setAnimation(currentLocation)
         }
         break
@@ -330,6 +334,11 @@ function init() {
             main_section.scrollBy(0, -windowHeight)
           }
           // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          quickNavLines.forEach(navLine => {
+            navLine.classList.remove('quick_nav_line_long')
+          })
+          quickNavLines[currentLocation - 1].classList.add('quick_nav_line_long')
+
           setAnimation(currentLocation - 2)
 
         }
