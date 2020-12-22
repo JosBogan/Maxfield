@@ -316,3 +316,80 @@ body {
   text-shadow: 4px 4px var(--primary_text);
   transform: translate(-4px, -4px);
 }
+
+@media (max-width: 767px) {
+  
+  /* CSS */
+
+  .writing_excerpt {
+    padding: 0 50px;
+  }
+
+  .tags_container {
+    margin-bottom: 50px;
+  }
+
+  .section_title {
+    margin-bottom: 50px;
+  }
+
+}
+
+@media (max-width: 560px) {
+  
+  /* CSS */
+
+  .page_title {
+    font-size: 4em;
+    /* margin: 0; */
+    text-align: center;
+  }
+
+  .page_header {
+    /* justify-content: center; */
+    right: 50vw;
+    /* transform: translate() */
+    right: auto;
+  }
+
+  .page_title {
+    transform: translateX(calc(50vw - 50%));
+  }
+
+  .section_title {
+    font-size: 1.5em;
+    /* margin: 0 0 50px 0; */
+  }
+
+  .about_me_section {
+    padding: 0 0 50px 0;
+  }
+
+  .about_me_text_content {
+    padding: 0 50px;
+  }
+
+  .writing_excerpt {
+    padding: 0 25px;
+  }
+
+  .section_title_line {
+    width: 50px;
+    margin-right: 20px;
+  }
+
+
+}
+
+@media (max-width: 370px) {
+  
+  .section_title {
+    font-size: 1.2em;
+  }
+
+
+  .about_me_text_content {
+    padding: 0 30px;
+  }
+
+}
