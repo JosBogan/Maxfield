@@ -395,6 +395,12 @@ function init() {
   }
 
   function autoScroll(sectionId) {
+
+    quickNavLines.forEach(navLine => {
+      navLine.classList.remove('quick_nav_line_long')
+    })
+    quickNavLines[sectionId].classList.add('quick_nav_line_long')
+
     // ! Browswer check
     let isSafari = navigator.userAgent.indexOf('Safari') > -1
     const isChrome = navigator.userAgent.indexOf('Chrome') > -1
@@ -457,10 +463,10 @@ function init() {
       scrolling = false
       currentLocation = main_section.scrollTop / windowHeight
       // nextButton.href = `#${pages[currentLocation + 1]}`
-      quickNavLines.forEach(navLine => {
-        navLine.classList.remove('quick_nav_line_long')
-      })
-      quickNavLines[currentLocation].classList.add('quick_nav_line_long')
+      // quickNavLines.forEach(navLine => {
+      //   navLine.classList.remove('quick_nav_line_long')
+      // })
+      // quickNavLines[currentLocation].classList.add('quick_nav_line_long')
     }
   }
 

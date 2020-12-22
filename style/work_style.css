@@ -147,6 +147,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: start;
+  text-align: left;
   margin-bottom: 100px;
   /* margin-left: -50px; */
   font-weight: 300;
