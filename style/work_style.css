@@ -78,7 +78,7 @@ body {
   top: 50vh;
   /* top: calc(var(--vh, 1vh) * 50); */
 
-  transform: translateY(-70%);
+  transform: translateY(-50%);
   right: 100px;
 }
 

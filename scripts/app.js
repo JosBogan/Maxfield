@@ -248,6 +248,9 @@ function init() {
 
     if (wasTouchMove) return
 
+    console.log(wasTouchMove)
+    console.log('here')
+
     sectionImages.forEach(image => {
       // console.log('doing this?')
       image.style.transform = `translate(${paralaxClient1.x}px, ${paralaxClient1.y}px)`
@@ -261,12 +264,12 @@ function init() {
 
   function touchMove(event) {
     wasTouchMove = true
+    console.log(wasTouchMove)
     if (event.touches.length > 1) {
       client.x = event.touches[0].clientX
       client.y = event.touches[0].clientY
     } else {
       if (event.type === 'touchmove') {
-        console.log('movin')
         // touchScrolling = true
         clearTimeout(touchScrollTimer)
         if (!lastTouch) lastTouch = event.touches[0].clientY
@@ -307,7 +310,6 @@ function init() {
     const isChrome = navigator.userAgent.indexOf('Chrome') > -1
     if ((isChrome) && (isSafari)) isSafari = false
     
-    console.log('second stage')
     switch (direction) {
       case 1:
         if (!scrolling) {
@@ -329,7 +331,6 @@ function init() {
           if (isSafari) {
             SmoothVerticalScrolling(400, 'up')
           } else {
-            console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
           }
           // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
@@ -375,7 +376,6 @@ function init() {
           if (isSafari) {
             SmoothVerticalScrolling(400, 'up')
           } else {
-            console.log('Getting through')
             main_section.scrollBy(0, -windowHeight)
           }
           // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
@@ -409,7 +409,6 @@ function init() {
     const locationDifference = currentLocation - parseInt(sectionId)
 
     if (isSafari) {
-      console.log('is safari')
       if (Math.sign(locationDifference) === -1) {
         SmoothVerticalScrolling(400, 'down', Math.abs(locationDifference))
       } else if (Math.sign(locationDifference) === 1) {
