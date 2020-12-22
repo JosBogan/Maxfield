@@ -75,7 +75,7 @@ body {
   /* transition: all 0.01s; */
   position: fixed;
   font-family: 'Raleway', sans-serif;
-  top: 50vh;
+  top: 40vh;
   /* top: calc(var(--vh, 1vh) * 50); */
 
   transform: translateY(-50%);
