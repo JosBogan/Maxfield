@@ -450,7 +450,7 @@ body {
     justify-content: center;
     height: 80px;
     top: auto;
-    transform: translateX(-50%) rotate(90deg)
+    transform: translateX(-50%) rotate(-90deg)
   }
 
   .quick_nav_buttons:hover {
