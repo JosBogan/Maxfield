@@ -31,6 +31,8 @@ function init() {
 
   let currentLocation = 0
 
+  let lastTouch
+
   const pages = ['title_section', 'about_me', 'my_work', 'contact']
 
   let burgerOpen = false
@@ -249,8 +251,15 @@ function init() {
   }
 
   function touchMove(event) {
-    client.x = event.touches[0].clientX
-    client.y = event.touches[0].clientY
+    if (event.touches.length > 1) {
+      client.x = event.touches[0].clientX
+      client.y = event.touches[0].clientY
+    } else {
+      if (event.type === 'touchmove') {
+        if (!lastTouch) lastTouch = event.touchMove[0].clientY
+        else touchScroll(event.touchMove[0].clientY - lastTouch)
+      }
+    }
   }
 
   function setAnimation(index) {
@@ -268,6 +277,49 @@ function init() {
     sectionTitleContainers.forEach(title => {
       title.classList.remove('animation_leftside')
     })
+  }
+
+  function touchScroll(directionRaw) {
+    
+    if (directionRaw > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
+    if (directionRaw < 0 && main_section.scrollTop <= 0) return
+
+    const direction = Math.sign(directionRaw.deltaY)
+
+    let isSafari = navigator.userAgent.indexOf('Safari') > -1
+    const isChrome = navigator.userAgent.indexOf('Chrome') > -1
+    if ((isChrome) && (isSafari)) isSafari = false
+
+    switch (direction) {
+      case 1:
+        if (!scrolling) {
+          scrolling = true
+          //! For Safari vs Chrome
+          if (isSafari) {
+            SmoothVerticalScrolling(400, 'down')
+          } else {
+            main_section.scrollBy(0, windowHeight)
+          }
+          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          setAnimation(currentLocation)
+        }
+        break
+      case -1:
+        if (!scrolling) {
+          scrolling = true
+          // ! For Safari vs Chrome
+          if (isSafari) {
+            SmoothVerticalScrolling(400, 'up')
+          } else {
+            console.log('Getting through')
+            main_section.scrollBy(0, -windowHeight)
+          }
+          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          setAnimation(currentLocation - 2)
+
+        }
+    }
+
   }
 
   function mouseScroll(event) {
