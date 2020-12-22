@@ -73,6 +73,8 @@ body {
   position: fixed;
   font-family: 'Raleway', sans-serif;
   top: 50vh;
+  top: calc(var(--vh, 1vh) * 50);
+  
   transform: translateY(-50%);
   right: 100px;
 }
@@ -293,13 +295,18 @@ body {
   transition: all 0.2s;
   left: 0;
   width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
+
   height: 0vh;
+  height: calc(var(--vh, 1vh) * 0);
+
   overflow: hidden;
   z-index: 2;
 }
 
 .menu_overlay_open {
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .menu_list {
@@ -340,6 +347,8 @@ body {
   .quick_nav {
     bottom: 50px;
     left: calc(50vw - 40px);
+    left: calc((var(--vw, 1vw) * 50) - 40px);
+
     /* width: 100vw; */
     display: flex;
     justify-content: center;
@@ -387,12 +396,15 @@ body {
   .page_header {
     /* justify-content: center; */
     right: 50vw;
+    right: calc(var(--vw, 1vw) * 50);
+
     /* transform: translate() */
     right: auto;
   }
 
   .page_title {
     transform: translateX(calc(50vw - 50%));
+    transform: translateX(calc((var(--vw, 1vw) * 50) - 50%));
   }
 
   .section_title {

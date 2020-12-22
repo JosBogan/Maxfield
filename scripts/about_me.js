@@ -5,8 +5,11 @@ function init() {
   const burgerMenu = document.querySelector('#burger_menu')
   const menuOverlay = document.querySelector('#menu_overlay')
 
-  const windowWidth = window.innerWidth
-  const windowHeight = window.innerHeight
+  let windowWidth = window.innerWidth
+  let windowHeight = window.innerHeight
+
+  document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`)
+  document.documentElement.style.setProperty('--vw', `${windowWidth * 0.01}px`)
 
   canvas.width = windowWidth
   // canvas.height = windowHeight
@@ -223,6 +226,13 @@ function init() {
   createCircles(numberOfCircles)
   onTick()
 
+  window.addEventListener('resize', () => {
+    windowWidth = window.innerWidth
+    windowHeight = window.innerHeight
+  
+    document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`)
+    document.documentElement.style.setProperty('--vw', `${windowWidth * 0.01}px`)
+  })
   burgerMenu.addEventListener('click', burgerMenuFunction)
   document.addEventListener('touchstart', touchMove)
   document.addEventListener('touchmove', touchMove)
