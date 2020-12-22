@@ -20,8 +20,11 @@ function init() {
   const sectionTitleMovementControlContainter = document.querySelectorAll('.section_title_movement_control_containter')
   // const pencil = document.querySelector('#pencil_img')
 
-  const windowWidth = window.innerWidth
-  const windowHeight = window.innerHeight
+  let windowWidth = window.innerWidth
+  let windowHeight = window.innerHeight
+
+  document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`)
+  document.documentElement.style.setProperty('--vw', `${windowWidth * 0.01}px`)
 
   const queryString = location.search.substring(1)
   console.log(queryString)
@@ -256,8 +259,9 @@ function init() {
       client.y = event.touches[0].clientY
     } else {
       if (event.type === 'touchmove') {
-        if (!lastTouch) lastTouch = event.touchMove[0].clientY
-        else touchScroll(event.touchMove[0].clientY - lastTouch)
+        console.log('movin')
+        if (!lastTouch) lastTouch = event.touches[0].clientY
+        else touchScroll(lastTouch - event.touches[0].clientY)
       }
     }
   }
@@ -280,16 +284,20 @@ function init() {
   }
 
   function touchScroll(directionRaw) {
+
+    console.log(directionRaw)
     
     if (directionRaw > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (directionRaw < 0 && main_section.scrollTop <= 0) return
 
-    const direction = Math.sign(directionRaw.deltaY)
-
+    
+    const direction = Math.sign(directionRaw)
+    
     let isSafari = navigator.userAgent.indexOf('Safari') > -1
     const isChrome = navigator.userAgent.indexOf('Chrome') > -1
     if ((isChrome) && (isSafari)) isSafari = false
-
+    
+    console.log('second stage')
     switch (direction) {
       case 1:
         if (!scrolling) {
@@ -483,6 +491,13 @@ function init() {
   }
 
 
+  window.addEventListener('resize', () => {
+    windowWidth = window.innerWidth
+    windowHeight = window.innerHeight
+  
+    document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`)
+    document.documentElement.style.setProperty('--vw', `${windowWidth * 0.01}px`)
+  })
   quickNavLines.forEach(link => {
     link.addEventListener('click', navClickedScroll)
   })
