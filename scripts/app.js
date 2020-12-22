@@ -34,9 +34,9 @@ function init() {
   let currentLocation = 0
 
   let lastTouch
-
   let touchScrollTimer
-  // let touchScrolling = false
+
+  let wasTouchMove = false
 
   // const pages = ['title_section', 'about_me', 'my_work', 'contact']
 
@@ -228,6 +228,7 @@ function init() {
   }
   
   function mouseMove(event) {
+    wasTouchMove = false
     clearTimeout(movementTimer)
     client.x = event.clientX
     client.y = event.clientY
@@ -244,6 +245,9 @@ function init() {
     // nameTag.style.transform = `rotateY(${paralaxClient.x}deg) rotateZ(${paralaxClient.y}deg)`
     // ! 2D Transform
     // ! content moving
+
+    if (wasTouchMove) return
+
     sectionImages.forEach(image => {
       // console.log('doing this?')
       image.style.transform = `translate(${paralaxClient1.x}px, ${paralaxClient1.y}px)`
@@ -256,6 +260,7 @@ function init() {
   }
 
   function touchMove(event) {
+    wasTouchMove = true
     if (event.touches.length > 1) {
       client.x = event.touches[0].clientX
       client.y = event.touches[0].clientY
