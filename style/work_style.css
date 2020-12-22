@@ -128,7 +128,10 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background: rgb(235, 235, 235)
+  background: rgb(235, 235, 235);
+  text-align: center;
+  overflow: hidden;
+  padding: 5px;
   /* border-right: 1px solid rgba(1, 1, 1, 0.5); */
 }
 
