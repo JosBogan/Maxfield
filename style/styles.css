@@ -448,9 +448,9 @@ body {
     /* width: 100vw; */
     display: flex;
     justify-content: center;
-    height: 50px;
+    height: 80px;
     top: auto;
-    transform: rotate(-90deg) translateY(-50%)
+    transform: translateX(-50%) rotate(90deg)
   }
 
   .quick_nav_buttons:hover {
