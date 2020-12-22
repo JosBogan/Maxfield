@@ -23,6 +23,9 @@ function init() {
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
+  const queryString = location.search.substring(1)
+  console.log(queryString)
+
   let scrolling = false
   let previousDelta = 0
 
@@ -422,6 +425,10 @@ function init() {
   
   createCircles(numberOfCircles)
   onTick()
+
+  if (queryString === 'contact') {
+    autoScroll(3)
+  }
 
 
   quickNavLines.forEach(link => {

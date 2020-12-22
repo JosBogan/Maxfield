@@ -332,3 +332,102 @@ body {
   text-shadow: 4px 4px var(--primary_text);
   transform: translate(-4px, -4px);
 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  /* CSS */
+
+  .quick_nav {
+    bottom: 50px;
+    left: calc(50vw - 40px);
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    top: auto;
+    transform: rotate(-90deg)
+  }
+
+  .quick_nav_buttons:hover {
+    height: 30px;
+    width: auto;
+  }
+
+  .quick_nav_line_long {
+    height: 30px;
+    width: auto;
+  }
+
+/* 
+  .quick_nav_list {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  } */
+  
+}
+
+@media (max-width: 767px) {
+  
+  /* CSS */
+
+}
+
+@media (max-width: 560px) {
+  
+  /* CSS */
+
+  .page_title {
+    font-size: 4em;
+    /* margin: 0; */
+    text-align: center;
+  }
+
+  .page_header {
+    /* justify-content: center; */
+    right: 50vw;
+    /* transform: translate() */
+    right: auto;
+  }
+
+  .page_title {
+    transform: translateX(calc(50vw - 50%));
+  }
+
+  .section_title {
+    font-size: 1.5em;
+    margin: 0 0 50px 0;
+  }
+
+  .writings_container {
+    padding: 50px 0 0 0;
+  }
+
+  .about_me_section {
+    padding: 0 0 50px 0;
+  }
+
+  .about_me_text_content {
+    padding: 0 50px;
+  }
+
+
+}
+
+@media (max-width: 370px) {
+  
+  .section_title {
+    font-size: 1.2em;
+  }
+
+  .section_title_line {
+    width: 50px;
+    margin-right: 20px;
+  }
+
+  .about_me_text_content {
+    padding: 0 30px;
+  }
+
+}
