@@ -27,7 +27,6 @@ function init() {
   document.documentElement.style.setProperty('--vw', `${windowWidth * 0.01}px`)
 
   const queryString = location.search.substring(1)
-  console.log(queryString)
 
   let scrolling = false
   let previousDelta = 0
@@ -36,7 +35,10 @@ function init() {
 
   let lastTouch
 
-  const pages = ['title_section', 'about_me', 'my_work', 'contact']
+  let touchScrollTimer
+  // let touchScrolling = false
+
+  // const pages = ['title_section', 'about_me', 'my_work', 'contact']
 
   let burgerOpen = false
   
@@ -260,8 +262,11 @@ function init() {
     } else {
       if (event.type === 'touchmove') {
         console.log('movin')
+        // touchScrolling = true
+        clearTimeout(touchScrollTimer)
         if (!lastTouch) lastTouch = event.touches[0].clientY
         else touchScroll(lastTouch - event.touches[0].clientY)
+        touchScrollTimer = setTimeout(() => lastTouch = null, 500)
       }
     }
   }
