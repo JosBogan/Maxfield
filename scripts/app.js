@@ -122,7 +122,6 @@ function init() {
       // newCircle = circleChecker()
       circles.push(new Circle(newCircle.radius, [newCircle.positionX, newCircle.positionY]))
     }
-    console.log(circles)
   }
   
   function randomColours() {
@@ -181,7 +180,7 @@ function init() {
       ) {
         const unitVector = calculateUnitVector(circle) // Use this to find the angle it is flying off in
         const magnitude = circleSensitivity - distance
-        // console.log(magnitude)
+
         if (
           !(circle.position.x + (unitVector[0] * (magnitude / circleSpeed)) + circle.radius >= windowWidth) &&
           !(circle.position.x + (unitVector[0] * (magnitude / circleSpeed)) - circle.radius <= 0)
@@ -239,7 +238,7 @@ function init() {
     paralaxClient1.y = 0 - ((event.clientY - (windowHeight / 2)) / 50)
     paralaxClient2.x = 0 - ((event.clientX - (windowWidth / 2)) / 10)
     paralaxClient2.y = 0 - ((event.clientY - (windowHeight / 2)) / 10)
-    // console.log(paralaxClient)
+
     // ! 3D Rotation
     // nameTag.style.transform = `rotateY(${paralaxClient.x}deg) rotateZ(${paralaxClient.y}deg)`
     // ! 2D Transform
@@ -247,7 +246,7 @@ function init() {
 
     if (wasTouchMove) return
 
-    console.log(event)
+
 
     sectionImages.forEach(image => {
       // console.log('doing this?')
@@ -362,7 +361,10 @@ function init() {
           } else {
             main_section.scrollBy(0, windowHeight)
           }
-          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          quickNavLines.forEach(navLine => {
+            navLine.classList.remove('quick_nav_line_long')
+          })
+          quickNavLines[currentLocation + 1].classList.add('quick_nav_line_long')
           setAnimation(currentLocation)
         }
         break
@@ -375,7 +377,10 @@ function init() {
           } else {
             main_section.scrollBy(0, -windowHeight)
           }
-          // ANIMATION DOES NOT OCCUR WHEN YOU CLICK THE DOWN ARROW
+          quickNavLines.forEach(navLine => {
+            navLine.classList.remove('quick_nav_line_long')
+          })
+          quickNavLines[currentLocation - 1].classList.add('quick_nav_line_long')
           setAnimation(currentLocation - 2)
 
         }
