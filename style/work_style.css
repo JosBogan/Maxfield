@@ -81,7 +81,7 @@ body {
   position: fixed;
   font-family: 'Raleway', sans-serif;
   top: 50vh;
-  top: calc(var(--vh, 1vh) * 50);
+  /* top: calc(var(--vh, 1vh) * 50); */
 
   transform: translateY(-70%);
   right: 100px;
