@@ -30,6 +30,7 @@ function init() {
 
   let scrolling = false
   let previousDelta = 0
+  let scrollTimer
 
   let currentLocation = 0
 
@@ -349,6 +350,8 @@ function init() {
   }
 
   function mouseScroll(event) {
+
+    clearTimeout(scrollTimer)
     
     if (event.deltaY > 0 && (main_section.scrollTop + windowHeight) >= main_section.scrollHeight ) return
     if (event.deltaY < 0 && main_section.scrollTop <= 0) return
@@ -397,7 +400,13 @@ function init() {
         }
     }
 
+    console.log(previousDelta, event.deltaY)
+
     previousDelta = event.deltaY
+
+    scrollTimer = setTimeout(() => {
+      previousDelta = 0
+    }, 500)
   
     // if (scrolling) return
     // scrolling = true
