@@ -11,6 +11,9 @@
   /* --floral_lavender: #8663a3; */
   /* --floral_lavender: #c28fec; */
 
+  --dark_blue: #242430;
+
+
   --indian_red: #E15554;
   --pastel_violet: #7768AE;
   --pastel_green: #3BB273;
@@ -18,7 +21,7 @@
   --mid_lavender: #71697A;
   --pale_teal: #D0E1D4;
 
-  --primary_background: var(--pale_blue);
+  --primary_background: var(--dark_blue);
   --secondary_background: ;
   --primary_accents: var(--indian_red);
   --primary_text: var(--indian_red);

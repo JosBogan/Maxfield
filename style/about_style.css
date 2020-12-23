@@ -7,6 +7,8 @@
 
   --muted_pink:#A53860;
 
+  --dark_blue: #242430;
+
   --floral_lavender: #AA7DCE;
 
   --indian_red: #E15554;
@@ -16,7 +18,7 @@
   --mid_lavender: #71697A;
   --pale_teal: #D0E1D4;
 
-  --primary_background: var(--pale_blue);
+  --primary_background: var(--dark_blue);
   --secondary_background: ;
   --primary_accents: var(--indian_red);
   --primary_text: var(--indian_red);
