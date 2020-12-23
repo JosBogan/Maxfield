@@ -551,6 +551,10 @@ body {
     margin-top: -1px;
   }
 
+  .quick_nav {
+    bottom: 30px
+  }
+
 }
 
 @media (max-width: 370px) {
