@@ -470,6 +470,26 @@ body {
     display: flex;
     justify-content: center;
   } */
+
+  .burger_menu {
+    width: 40px;
+  }
+
+  .burger_line_top {
+    margin-bottom: 5px;
+  }
+
+  .burger_line_bot {
+    margin-top: 5px;
+  }
+
+  .burger_line_top_clicked {
+    margin-bottom: -1px;
+  }
+
+  .burger_line_bot_clicked {
+    margin-top: -1px;
+  }
   
 }
 
@@ -506,6 +526,26 @@ body {
 
   .animation_rightside.contact_section_image_container {
     transform: translate(0,30px)
+  }
+
+  .burger_menu {
+    width: 30px;
+  }
+
+  .burger_line_top {
+    margin-bottom: 3px;
+  }
+
+  .burger_line_bot {
+    margin-top: 3px;
+  }
+
+  .burger_line_top_clicked {
+    margin-bottom: -1px;
+  }
+
+  .burger_line_bot_clicked {
+    margin-top: -1px;
   }
 
 }

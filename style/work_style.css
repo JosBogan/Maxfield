@@ -246,7 +246,7 @@ body {
 
 .personal_links {
   position: fixed;
-  top: 50px;
+  top: 44px;
   left: 50px;
   z-index: 1;
   /* color: white; */
@@ -266,7 +266,7 @@ body {
 
 .name_tag {
   position: fixed;
-  top: 56px;
+  top: 50px;
   left: 100px;
   font-family: 'Raleway', sans-serif;
   color: var(--primary_text);
@@ -344,6 +344,26 @@ body {
     margin-bottom: 50px;
   }
 
+  .burger_menu {
+    width: 40px;
+  }
+
+  .burger_line_top {
+    margin-bottom: 5px;
+  }
+
+  .burger_line_bot {
+    margin-top: 5px;
+  }
+
+  .burger_line_top_clicked {
+    margin-bottom: -1px;
+  }
+
+  .burger_line_bot_clicked {
+    margin-top: -1px;
+  }
+
 }
 
 @media (max-width: 560px) {
@@ -390,6 +410,26 @@ body {
   .section_title_line {
     width: 50px;
     margin-right: 20px;
+  }
+
+  .burger_menu {
+    width: 30px;
+  }
+
+  .burger_line_top {
+    margin-bottom: 3px;
+  }
+
+  .burger_line_bot {
+    margin-top: 3px;
+  }
+
+  .burger_line_top_clicked {
+    margin-bottom: -1px;
+  }
+
+  .burger_line_bot_clicked {
+    margin-top: -1px;
   }
 
 
